@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la Classe{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-semibold text-center my-6">Détails de la Classe</h1>
+
+    <div class="mb-4">
+        <p><strong>ID:</strong> {{ classe.id }}</p>
+        <p><strong>Nom de la classe:</strong> {{ classe.nomClasse }}</p>
+        <p><strong>Niveau:</strong> {{ classe.niveau.nomNiveau }}</p> <!-- Assurez-vous que le niveau est une propriété de l'entité Niveau -->
+    </div>
+
+    <h2 class="text-2xl font-semibold mb-4">Sessions associées à la classe</h2>
+
+    <table class="table-auto w-full border-collapse border border-gray-300">
+        <thead>
+            <tr>
+                <th class="border border-gray-300 px-4 py-2">Cours</th>
+                <th class="border border-gray-300 px-4 py-2">Date de début</th>
+                <th class="border border-gray-300 px-4 py-2">Date de fin</th>
+                <th class="border border-gray-300 px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in classe.session %}
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">{{ session.cours.nomCours }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ session.datedebut|date('Y-m-d') }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ session.datefin|date('Y-m-d') }}</td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        <a href="{{ path('session_show', {'id': session.id}) }}" class="text-blue-500 hover:text-blue-700">Voir</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="border border-gray-300 px-4 py-2 text-center">Aucune session associée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('classe_index') }}" class="text-blue-500 hover:text-blue-700 mt-4 block">Retour à la liste des classes</a>
+{% endblock %}

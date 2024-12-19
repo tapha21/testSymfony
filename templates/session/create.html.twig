@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une Session{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-semibold text-center my-6">Créer une Session</h1>
+
+    <div class="max-w-lg mx-auto">
+        {{ form_start(form) }}
+            <div class="mb-4">
+                {{ form_label(form.nom) }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-input mt-1 block w-full'}}) }}
+            </div>
+
+            <div class="mb-4">
+                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

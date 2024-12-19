@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{# templates/classe/create.html.twig #}
+
+{% block title %}Créer une Classe{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-semibold text-center my-6">Créer une Nouvelle Classe</h1>
+
+    {{ form_start(form) }}
+        <div class="mb-4">
+            <label for="nomClasse" class="block text-gray-700">Nom de la Classe</label>
+            {{ form_widget(form.nomClasse, {'attr': {'class': 'w-full border border-gray-300 p-2 rounded-md'}}) }}
+        </div>
+
+        <div class="mb-4">
+            <label for="niveau" class="block text-gray-700">Niveau</label>
+            {{ form_widget(form.niveau, {'attr': {'class': 'w-full border border-gray-300 p-2 rounded-md'}}) }}
+        </div>
+
+        <div class="mb-4">
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Créer la Classe</button>
+        </div>
+    {{ form_end(form) }}
+
+    <a href="{{ path('classe_index') }}" class="text-blue-500 hover:text-blue-700">Retour à la liste des classes</a>
+{% endblock %}

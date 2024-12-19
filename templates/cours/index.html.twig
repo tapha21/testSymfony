@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Cours{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-semibold text-center my-6">Liste des Cours</h1>
+
+    <!-- Formulaire de filtre pour le niveau -->
+    <form method="get" action="{{ path('app_cours') }}" class="mb-6">
+        <div class="flex justify-center">
+            <div class="mr-4">
+                <label for="niveau" class="text-gray-700">Filtrer par Niveau:</label>
+                <select name="niveau" id="niveau" class="border border-gray-300 rounded-lg p-2">
+                    <option value="">Tous les Niveaux</option>
+                    <option value="License1" {% if app.request.get('niveau') == 'License1' %}selected{% endif %}>License1</option>
+                    <option value="License2" {% if app.request.get('niveau') == 'License2' %}selected{% endif %}>License2</option>
+                    <option value="License3" {% if app.request.get('niveau') == 'License3' %}selected{% endif %}>License3</option>
+                </select>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg">Filtrer</button>
+        </div>
+    </form>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+            <thead>
+                <tr class="bg-gray-100 text-gray-600 text-sm uppercase">
+                    <th class="px-6 py-3 border-b">ID</th>
+                    <th class="px-6 py-3 border-b">Nom du Cours</th>
+                    <th class="px-6 py-3 border-b">Module</th>
+                    <th class="px-6 py-3 border-b">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cours in cours %}
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-6 py-4 text-center">{{ cours.id }}</td>
+                        <td class="px-6 py-4">{{ cours.nomCours }}</td>
+                        <td class="px-6 py-4">{{ cours.enum }}</td>
+                        <td class="px-6 py-4 text-center">
+                            <a href="{{ path('class_show', {'id': cours.id}) }}" class="text-blue-500 hover:text-blue-700 font-medium">Voir</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center text-gray-500 px-6 py-4">Aucun cours disponible</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

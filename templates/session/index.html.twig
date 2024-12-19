@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Sessions{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-semibold text-center my-6">Liste des Sessions</h1>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+            <thead>
+                <tr class="bg-gray-100 text-gray-600 text-sm uppercase">
+                    <th class="px-6 py-3 border-b">ID</th>
+                    <th class="px-6 py-3 border-b">Nom du Cours</th>
+                    <th class="px-6 py-3 border-b">Nom de la Classe</th>
+                    <th class="px-6 py-3 border-b">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-6 py-4 text-center">{{ session.id }}</td>
+                            <td class="px-6 py-4">{{ session.cours.nomCours }}</td>
+                        <td class="px-6 py-4">{{ session.classe.nomClasse }}</td> <!-- Nom de la classe -->
+                        <td class="px-6 py-4 text-center">
+                            <a href="{{ path('app_session', {'id': session.id}) }}" class="text-blue-500 hover:text-blue-700 font-medium">Voir</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center text-gray-500 px-6 py-4">Aucune session disponible</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ path('app_session_create') }}" class="btn btn-primary">Créer une nouvelle session</a>
+    </div>
+{% endblock %}
