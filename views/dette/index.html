@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Dettes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" />
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <div id="menu-container"></div>
+
+    <div class="container mx-auto px-4 py-6  mt-20">
+        <h1 class="text-2xl font-bold text-center mb-6">Liste des Dettes</h1>
+
+        <!-- Filtrage -->
+        <div class="flex justify-center mb-6 space-x-4 ml-20">
+            <input 
+            type="text" 
+            id="search-nom" 
+            placeholder="Rechercher par nom"
+            class="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+            <select 
+                name="statut" 
+                id="statut" 
+                class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">Filtrer par statut</option>
+                <option value="solde">Soldé</option>
+                <option value="non_solde">Non Soldé</option>
+            </select>
+            <button 
+                id="search-button" 
+                class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                Filtrer
+            </button>
+
+            <button 
+            id="new" 
+            class="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 ml-34">
+            Nouvel dette
+        </button>
+        </div>
+
+        <!-- Tableau des Dettes -->
+        <div class="overflow-x-auto shadow rounded-lg bg-white mx-auto max-w-6xl p-4 sm:ml-64 ">
+            <table class="w-full text-left text-sm text-gray-500">
+                <thead class="bg-blue-600 text-xs uppercase text-gray-100">
+                    <tr>
+                        <th class="px-6 py-4 text-center">#</th>
+                        <th class="px-6 py-4 text-center">Client</th>
+                        <th class="px-6 py-4 text-center">Montant</th>
+                        <th class="px-6 py-4 text-center">Solde Restant</th>
+                        <th class="px-6 py-4 text-center">Statut</th>
+                        <th class="px-6 py-4 text-center">Details</th>
+                    </tr>
+                </thead>
+                <tbody id="dette-table-body" class="divide-y divide-gray-200">
+                    <!-- Les dettes seront injectées ici -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="flex justify-center mt-6 space-x-2">
+            <!-- Les boutons de pagination seront injectés ici -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script src="{{ asset('build/js/Dette/ListeDette.js') }}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Articles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" />
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <div id="menu-container"></div>
+    <div class="container mx-auto px-4 py-6  mt-20 ml-34">
+        <h1 class="text-2xl font-bold text-center mb-6">Liste des Articles</h1>
+
+        <!-- Recherche -->
+        <div class="flex justify-center mb-6">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Rechercher par libellé" 
+                class="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button 
+                id="search-button" 
+                class="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600"
+            >
+                Rechercher
+            </button>
+            <button 
+            id="new" 
+            class="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 ml-64">
+            Nouvel Article
+        </button>
+        </div>
+
+        <!-- Tableau des articles -->
+        <div class="overflow-x-auto shadow rounded-lg bg-white mx-auto max-w-6xl p-4 sm:ml-64 ">
+            <table class="w-full text-left text-sm text-gray-500">
+                <thead class="bg-blue-600 text-xs uppercase text-gray-100">
+                    <tr>
+                        <th class="px-6 py-3">ID</th>
+                        <th class="px-6 py-3">Libellé</th>
+                        <th class="px-6 py-3">Référence</th>
+                        <th class="px-6 py-3">Prix</th>
+                        <th class="px-6 py-3">Quantité</th>
+                        <th class="px-6 py-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="article-table-body" class="divide-y divide-gray-200">
+                    <!-- Les articles seront injectés ici -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="flex justify-center mt-6 space-x-2">
+            <!-- Les boutons de pagination seront injectés ici -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script src="{{ asset('build/js/Article/ListeArticle.js') }}"></script>
+
+</body>
+</html>

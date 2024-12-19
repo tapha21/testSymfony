@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
+    <title>Connexion</title>
+</head>
+<body class="bg-gray-100">
+    <div class="flex justify-center items-center min-h-screen pt-20">
+        <div class="w-full max-w-md p-8 space-y-4 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-center">Connexion</h2>
+
+            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert" style="display: none;">
+                Erreur de connexion : Veuillez vérifier vos informations.
+            </div>
+
+            <form action="/login" method="post" class="space-y-4">
+                <input type="hidden" name="_csrf_token" value="votre_csrf_token">
+
+                <div class="flex flex-col">
+                    <label for="username" class="text-sm font-medium text-gray-700">Email :</label>
+                    <div class="relative mt-1">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </span>
+                        <input type="text" id="login" name="_username" value="exemple@email.com" required autofocus 
+                            class="w-full pl-10 p-2 border rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Email">
+                    </div>
+                </div>
+            
+                <div class="flex flex-col">
+                    <label for="password" class="text-sm font-medium text-gray-700">Mot de passe :</label>
+                    <div class="relative mt-1">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </span>
+                        <input type="password" id="password" name="_password" required 
+                            class="w-full pl-10 p-2 border rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Mot de passe">
+                    </div>
+                </div>
+            
+                <button type="submit" class="w-full py-2 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Se connecter
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

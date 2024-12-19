@@ -1,0 +1,15 @@
+{
+  "build/js/Client/ListeClient.js": "/build/js/Client/ListeClient.js",
+  "build/js/Client/FormClient.js": "/build/js/Client/FormClient.js",
+  "build/js/Article/ListeArticle.js": "/build/js/Article/ListeArticle.js",
+  "build/js/Article/FormArticle.js": "/build/js/Article/FormArticle.js",
+  "build/js/User/ListeUser.js": "/build/js/User/ListeUser.js",
+  "build/js/Dette/ListeDette.js": "/build/js/Dette/ListeDette.js",
+  "build/js/Dette/FormDette.js": "/build/js/Dette/FormDette.js",
+  "build/js/Dette/DetailsDette.js": "/build/js/Dette/DetailsDette.js",
+  "build/js/runtime.js": "/build/js/runtime.js",
+  "build/js/vendors-node_modules_core-js_modules_es_json_stringify_js-node_modules_core-js_modules_es_obj-9a58ff.js": "/build/js/vendors-node_modules_core-js_modules_es_json_stringify_js-node_modules_core-js_modules_es_obj-9a58ff.js",
+  "build/js/vendors-node_modules_core-js_internals_call-with-safe-iteration-closing_js-node_modules_core--7342cc.js": "/build/js/vendors-node_modules_core-js_internals_call-with-safe-iteration-closing_js-node_modules_core--7342cc.js",
+  "build/js/vendors-node_modules_core-js_modules_web_url-search-params_delete_js-node_modules_core-js_mod-1dc607.js": "/build/js/vendors-node_modules_core-js_modules_web_url-search-params_delete_js-node_modules_core-js_mod-1dc607.js",
+  "build/js/vendors-node_modules_core-js_modules_es_array_find-index_js-node_modules_core-js_modules_es_a-6d0cfc.js": "/build/js/vendors-node_modules_core-js_modules_es_array_find-index_js-node_modules_core-js_modules_es_a-6d0cfc.js"
+}

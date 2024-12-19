@@ -1,0 +1,9 @@
+# config/packages/twig.yaml
+twig:
+    default_path: '%kernel.project_dir%/templates'  # Chemin par défaut pour les templates Symfony
+    paths:
+        '%kernel.project_dir%/views': ~  # Ajouter le dossier views à la recherche de templates
+
+    file_name_pattern: '*.twig'
+    strict_variables: false  # Valeur par défaut
+

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mx-auto p-6 bg-gradient-to-r from-blue-500 via-white to-white rounded-lg shadow-lg max-w-6xl mt-20">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">
+            Dettes de {{ client.prenom }} {{ client.nom }} <br>
+            <span class="text-lg font-normal">
+                (Total dettes : {{ totalMontant | number_format(0, ',', ' ') }} FCFA, Montant versé : {{ totalMontantVerser | number_format(0, ',', ' ') }} FCFA)
+            </span>
+        </h1>
+            <form method="GET" action="{{ path('dette_filtre_cl') }}" class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <label for="statut" class="mr-2">Filtrer par statut:</label>
+                    <select name="statut" id="statut" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-gray-900 w-64 h-10">
+                        <option value=""class="text-gray-600">Tous</option>
+                        <option value="solde" {% if app.request.get('statut') == 'solde' %}selected{% endif %}class="text-gray-900">Soldé</option>
+                        <option value="non_solde" {% if app.request.get('statut') == 'non_solde' %}selected{% endif %}class="text-gray-900">Non Soldé</option>
+                    </select>
+                </div>
+                <button type="submit" class="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200">Filtrer</button>
+            </form>
+        <div class="flex justify-center items-center mt-4">
+            <table class="w-full bg-white border border-gray-300 shadow-md rounded-lg border-separate border border-slate-400">
+                <thead class="bg-blue-200">
+                    <tr>
+                        <th class="px-8 py-4 text-sm font-medium text-gray-700 uppercase tracking-wider text-center">Date</th>
+                        <th class="px-8 py-4 text-sm font-medium text-gray-700 uppercase tracking-wider text-center">Montant</th>
+                        <th class="px-8 py-4 text-sm font-medium text-gray-700 uppercase tracking-wider text-center">Solde Restant</th>
+                        <th class="px-8 py-4 text-sm font-medium text-gray-700 uppercase tracking-wider text-center">Statut</th>
+                        <th class="px-8 py-4 text-sm font-medium text-gray-700 uppercase tracking-wider text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-gradient-to-r from-blue-50 to-white">
+                    {% for dette in dettes %}
+                        <tr class="hover:bg-blue-100 transition ease-in-out duration-150">
+                            <td class="px-8 py-4 text-center text-sm text-gray-600">{{ dette.creatAt | date('d/m/Y') }}</td>
+                            <td class="px-8 py-4 text-center text-sm text-gray-600">{{ dette.montant | number_format(0, ',', ' ') }} FCFA</td>
+                            <td class="px-8 py-4 text-center text-sm text-gray-600">{{ (dette.montant - dette.montantVerser) | number_format(0, ',', ' ') }} FCFA</td>
+                            <td class="px-8 py-4 text-center text-sm">
+                                {% if dette.montant - dette.montantVerser <=0 %}
+                                    <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Soldé
+                                    </span>
+                                {% else %}
+                                    <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        Non Soldé
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="px-8 py-4 text-center border-b border-gray-200">
+                                <div class="flex justify-center space-x-4">
+                                    <a href="{{ path('dette_details', { id: dette.id }) }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-100 rounded hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        Détails
+                                    </a>
+                                    {% if dette.montant - dette.montantVerser > 0 %}
+                                    <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-300 rounded hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                        Payer
+                                    </a>
+                                {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

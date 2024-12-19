@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles de la Dette</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Pour effectuer des requêtes AJAX si nécessaire -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- Pour le style avec Tailwind CSS -->
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+        <h2 class="text-2xl font-bold mb-4 text-center text-gray-800" id="detteTitle">Articles de la dette</h2>
+        
+        <ul id="articleList" class="space-y-2">
+            <!-- Articles will be populated here dynamically -->
+        </ul>
+        <p id="noArticles" class="text-center text-gray-500 hidden">Aucun article associé à cette dette.</p>
+    </div>
+
+    <script>
+        // Exemple de données des articles (vous pouvez récupérer cela avec une requête AJAX)
+        const articles = [
+            { libelle: 'Article 1', prix: 1500 },
+            { libelle: 'Article 2', prix: 3000 },
+            // Si la dette n'a pas d'articles, laissez le tableau vide
+        ];
+
+        const detteId = 123; // ID de la dette, que vous pouvez remplacer dynamiquement
+
+        // Mise à jour du titre
+        document.getElementById('detteTitle').textContent = `Articles de la dette ${detteId}`;
+
+        const articleList = document.getElementById('articleList');
+        const noArticles = document.getElementById('noArticles');
+
+        // Fonction pour afficher les articles
+        function displayArticles() {
+            if (articles.length > 0) {
+                articles.forEach(article => {
+                    const listItem = document.createElement('li');
+                    listItem.className = "flex justify-between p-4 border border-gray-200 rounded-lg bg-gray-50";
+                    listItem.innerHTML = `
+                        <span class="font-medium text-gray-600">${article.libelle}</span>
+                        <span class="text-gray-600">${article.prix.toLocaleString('fr-FR')} FCFA</span>
+                    `;
+                    articleList.appendChild(listItem);
+                });
+                noArticles.classList.add('hidden'); // Cacher le message "Aucun article"
+            } else {
+                articleList.innerHTML = ''; // Si aucun article, nettoyer la liste
+                noArticles.classList.remove('hidden'); // Afficher le message "Aucun article"
+            }
+        }
+
+        // Appeler la fonction pour afficher les articles
+        displayArticles();
+    </script>
+
+</body>
+</html>
